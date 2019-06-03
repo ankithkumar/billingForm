@@ -1,0 +1,177 @@
+@media (min-width: 1281px) {
+    .billing-shipping {
+        width: 100%;
+    }
+    
+    .billing, .shipping {
+        float: left;
+        width: 45%;
+        margin: 2%;
+    }
+    
+    input {
+        width: 90%;
+        margin: 2%;
+        color: black;
+        font-size: 30px;
+        display: block;
+    }
+    
+    h1 {
+        margin: 2%;
+    }
+    
+    .labels {
+        width: 100%;
+        margin: 2%;
+        visibility: visible;
+    }
+    .labels span {
+        visibility: visible;
+        width: 10%;
+        margin: 1%;
+        display: inline-block;
+        color: black;
+        font-size: 30px;
+    }
+    
+    app-product {
+        display: block;
+        margin: 2%;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .billing-shipping {
+        width: 100%;
+    }
+    
+    .billing, .shipping {
+        float: left;
+        width: 45%;
+        margin: 2%;
+    }
+    
+    input {
+        width: 90%;
+        margin: 2%;
+        color: black;
+        font-size: 30px;
+        display: block;
+    }
+    
+    h1 {
+        margin: 2%;
+    }
+    
+    .labels {
+        width: 100%;
+        margin: 2%;
+        visibility: visible;
+    }
+    .labels span {
+        visibility: visible;
+        width: 10%;
+        margin: 1%;
+        display: inline-block;
+        color: black;
+        font-size: 30px;
+    }
+    
+    app-product {
+        display: block;
+        margin: 2%;
+    } 
+}
+   
+@media (min-width: 768px) and (max-width: 1024px) {
+    .billing-shipping {
+        width: 100%;
+    }
+    
+    .billing, .shipping {
+        float: left;
+        width: 45%;
+        margin: 2%;
+    }
+    
+    input {
+        width: 90%;
+        margin: 2%;
+        color: black;
+        font-size: 30px;
+        display: block;
+    }
+    
+    h1 {
+        margin: 2%;
+    }
+    
+    .labels {
+        width: 100%;
+        margin: 2%;
+        visibility: none;
+    }
+    .labels span {
+        visibility: none;
+        width: 10%;
+        margin: 1%;
+        display: inline-block;
+        color: black;
+        font-size: 30px;
+    }
+    
+    app-product {
+        display: block;
+        margin: 2%;
+    }    
+}
+  
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    .billing-shipping {
+        width: 100%;
+    }
+    
+    .billing, .shipping {
+        float: left;
+        width: 90%;
+        margin: 2%;
+    }
+    
+    input {
+        width: 50%;
+        margin: 2%;
+        color: black;
+        font-size: 30px;
+        display: block;
+    }
+    
+    h1 {
+        margin: 2%;
+    }
+    
+    .labels {
+        width: 100%;
+        margin: 2%;
+        visibility: none;
+    }
+    .labels span {
+        visibility: visible;
+        width: 10%;
+        margin: 1%;
+        display: inline-block;
+        color: black;
+        font-size: 30px;
+    }
+    
+    app-product {
+        display: block;
+        margin: 2%;
+        border-bottom: 1px solid black;
+    }
+    
+  }

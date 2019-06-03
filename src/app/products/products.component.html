@@ -1,0 +1,11 @@
+<div *ngIf="product">
+    <form [formGroup]="productForm">
+        <input type="text" formControlName="id">        
+        <input type="text" formControlName="name"/>
+        <input type="number" formControlName="qty" />
+        <input type="number" formControlName="unitPrice" />
+        <input type="number" formControlName="totalPrice"/>
+        <input type="notes" formControlName="notes" />
+        <input type="button" (click)="deleteProduct()" value="delete"/>
+    </form>
+</div>

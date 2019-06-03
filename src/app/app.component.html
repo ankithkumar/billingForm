@@ -1,20 +1,41 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div *ngIf="hasLoaded">
+  <div class="billing-shipping">
+      <div class="billing">
+        <h1>Billing Adress</h1>
+        <app-billing [details]="details.billing" (change) = "onBillingDetailsChange($event)"></app-billing>
+        <h1>Order Date</h1>
+        <input type="date" (ngModelChange)="updateBillingDate($event)" [ngModel]="billingDate" [value]="details.billing.orderDate"/>
+      </div>
+      <div class="shipping">
+        <h1>Shipping Adress</h1>
+        <app-billing [details]="details.shipping" (change) = "onShippingDetailsChange($event)"></app-billing>
+        <h1>Expected Delivery</h1>
+        <input type="date" (ngModelChange)="updateShippingDate($event)" [ngModel]="shippingDate" [value]="details.shipping.expectedDate"/>
+      </div>
+  </div>
+  <div class="product">
+    <div class="display" *ngIf="details.products.length != 0">
+        <div class="labels">
+            <span>Product Id</span>
+            <span>Product Name</span>
+            <span>QTY</span>
+            <span>Unit Price</span>
+            <span>Total Price</span>
+            <span>Notes</span>
+          </div>
+          <div *ngFor="let product of details.products">
+            <app-product 
+              [product] = "product"
+              (deleteItem) = "deleteProductItem($event, product)"
+              (change) = "updateProduct($event, product)" 
+            >
+          </app-product>  
+          </div>
+    </div>
+    <button (click) ="addProduct()">Add Product</button>
+  </div>
+  <button (click) ="save()">Save</button>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div *ngIf="!hasLoaded">
+  <p>still loading!!</p>
+</div>

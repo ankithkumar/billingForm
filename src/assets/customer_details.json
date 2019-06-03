@@ -1,0 +1,44 @@
+{
+    "billing": {
+        "firstName": "abc",
+        "secondName": "bcd",
+        "adressLine1": "adress 1",
+        "adressLine2": "adress 2",
+        "city": "bangalore",
+        "state": "karnataka",
+        "zipCode": "560048",
+        "country": "india",
+        "orderDate": "2019/04/02"
+    },
+    "shipping": {
+        "firstName": "abc",
+        "secondName": "bcd",
+        "adressLine1": "adress 1",
+        "adressLine2": "adress 2",
+        "city": "bangalore",
+        "state": "karnataka",
+        "zipCode": "560048",
+        "country": "india",
+        "expectedDate": "2019/04/02"
+    },
+    "products": [
+        {
+            "id": "10000",
+            "name": "stockholm",
+            "qty": 8,
+            "unitPrice": 529
+        },
+        {
+            "id": "10041",
+            "name": "dining chair",
+            "qty": 2,
+            "unitPrice": 105
+        },
+        {
+            "id": "10042",
+            "name": "dining chair set of four",
+            "qty": 12,
+            "unitPrice": 105
+        }
+    ]
+}
