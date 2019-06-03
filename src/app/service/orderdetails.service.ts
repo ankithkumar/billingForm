@@ -25,13 +25,13 @@ export class Orderdetails {
         return new Promise<any>((resolve, reject) => {
          if (!this.details) {
              this.raiseUpdatedEvent();
-             resolve(this.details);
+             resolve(JSON.parse(JSON.stringify(this.details)));
              return;
          }
          this.fetchDetails().subscribe(values => {
              this.details = values;
              this.raiseUpdatedEvent();
-             resolve(this.details);
+             resolve(JSON.parse(JSON.stringify(this.details)));
          }, error => {
              console.log('failed! ',error);
              reject(error);
@@ -41,7 +41,7 @@ export class Orderdetails {
 
     raiseUpdatedEvent() {
         console.log('updating ', this.details);
-        this.detailsUpdated.next(this.details);
+        this.detailsUpdated.next(JSON.parse(JSON.stringify(this.details)));
     }
 
     createProductModal() {
