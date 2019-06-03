@@ -1,3 +1,10 @@
+button {
+    width: 50%;
+    color: red;
+    float: middle;
+    text-align: center
+}
+
 @media (min-width: 1281px) {
     .billing-shipping {
         width: 100%;
@@ -24,10 +31,8 @@
     .labels {
         width: 100%;
         margin: 2%;
-        visibility: visible;
     }
     .labels span {
-        visibility: visible;
         width: 10%;
         margin: 1%;
         display: inline-block;
@@ -66,10 +71,8 @@
     .labels {
         width: 100%;
         margin: 2%;
-        visibility: visible;
     }
     .labels span {
-        visibility: visible;
         width: 10%;
         margin: 1%;
         display: inline-block;
@@ -109,10 +112,8 @@
     .labels {
         width: 100%;
         margin: 2%;
-        visibility: none;
     }
     .labels span {
-        visibility: none;
         width: 10%;
         margin: 1%;
         display: inline-block;
@@ -157,10 +158,8 @@
     .labels {
         width: 100%;
         margin: 2%;
-        visibility: none;
     }
-    .labels span {
-        visibility: visible;
+    span {
         width: 10%;
         margin: 1%;
         display: inline-block;
