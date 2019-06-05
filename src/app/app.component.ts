@@ -7,8 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy{
-  title = 'caseone';
+export class AppComponent implements OnDestroy {
   private details;
   private hasLoaded;
   private error;
