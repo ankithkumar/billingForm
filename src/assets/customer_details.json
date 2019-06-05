@@ -8,7 +8,7 @@
         "state": "karnataka",
         "zipCode": "560048",
         "country": "india",
-        "orderDate": "2019/04/02"
+        "orderDate": "2019-04-02"
     },
     "shipping": {
         "firstName": "abc",
@@ -19,7 +19,7 @@
         "state": "karnataka",
         "zipCode": "560048",
         "country": "india",
-        "expectedDate": "2019/04/02"
+        "expectedDate": "2019-04-02"
     },
     "products": [
         {

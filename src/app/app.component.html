@@ -1,41 +1,51 @@
-<div *ngIf="hasLoaded">
-  <div class="billing-shipping">
-      <div class="billing">
-        <h1>Billing Adress</h1>
-        <app-billing [details]="details.billing" (change) = "onBillingDetailsChange($event)"></app-billing>
-        <h1>Order Date</h1>
-        <input type="date" (ngModelChange)="updateBillingDate($event)" [ngModel]="billingDate" [value]="details.billing.orderDate"/>
-      </div>
-      <div class="shipping">
-        <h1>Shipping Adress</h1>
-        <app-billing [details]="details.shipping" (change) = "onShippingDetailsChange($event)"></app-billing>
-        <h1>Expected Delivery</h1>
-        <input type="date" (ngModelChange)="updateShippingDate($event)" [ngModel]="shippingDate" [value]="details.shipping.expectedDate"/>
-      </div>
-  </div>
-  <div class="product">
-    <div class="display" *ngIf="details.products.length != 0">
-        <div class="labels">
-            <span>Product Id</span>
-            <span>Product Name</span>
-            <span>QTY</span>
-            <span>Unit Price</span>
-            <span>Total Price</span>
-            <span>Notes</span>
+<div class="container">
+    <div *ngIf="hasLoaded">
+        <div class="billing-shipping">
+            <div class="billing">
+              <h1>Billing Adress</h1>
+              <app-billing [details]="details.billing" (change) = "onBillingDetailsChange($event)"></app-billing>
+              <h1>Order Date</h1>
+              <input 
+                type="date"
+                (change) = "updateBillingDate($event.target.value)" 
+                [value]=details.billing.orderDate
+              />
+            </div>
+            <div class="shipping">
+              <h1>Shipping Adress</h1>
+              <app-billing [details]="details.shipping" (change) = "onShippingDetailsChange($event)"></app-billing>
+              <h1>Expected Delivery</h1>
+              <input type="date" 
+                (change)="updateShippingDate($event.target.value)" 
+                [value]=details.shipping.expectedDate
+                />
+            </div>
+        </div>
+        <div class="product-list">
+          <div class="display" *ngIf="details.products.length != 0">
+              <h1> Products: </h1>
+              <div class="labels">
+                  <span>Product Id</span>
+                  <span>Product Name</span>
+                  <span>QTY</span>
+                  <span>Unit Price</span>
+                  <span>Total Price</span>
+                  <span>Notes</span>
+                </div>
+                <div *ngFor="let product of details.products">
+                  <app-product 
+                    [product] = "product"
+                    (deleteProd) = "deleteProductItem($event, product)"
+                    (onChange) = "updateProduct($event, product)" 
+                  >
+                </app-product>  
+                </div>
           </div>
-          <div *ngFor="let product of details.products">
-            <app-product 
-              [product] = "product"
-              (deleteItem) = "deleteProductItem($event, product)"
-              (onChange) = "updateProduct($event, product)" 
-            >
-          </app-product>  
-          </div>
-    </div>
-    <button (click) ="addProduct()">Add Product</button>
-  </div>
-  <button (click) ="save()">Save</button>
-</div>
-<div *ngIf="!hasLoaded">
-  <p>still loading!!</p>
+          <button type="button" class="product" (click) ="addProduct()">Add Product</button>
+        </div>
+        <button type="button" class="save" (click) ="save()">Save</button>
+      </div>
+      <div *ngIf="!hasLoaded">
+        <p>still loading!!</p>
+      </div>  
 </div>

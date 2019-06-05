@@ -10,7 +10,7 @@ export class ProductComponent implements OnInit{
     @Input('product') product: any;
     productForm;
     @Output() onChange: EventEmitter<any>  = new EventEmitter<any>(); 
-    @Output() delete = new EventEmitter<any>();
+    @Output() deleteProd = new EventEmitter<any>();
 
     constructor() {
         console.log('product component!! ', this.product);
@@ -32,17 +32,25 @@ export class ProductComponent implements OnInit{
     }
 
     empty(obj) {
-        if (!obj.id || 
-            !obj.name ||
-            !obj.qty ||
-            !obj.unitPrice || 
-            !obj.totalPrice) {
+        if (!this.productForm.controls['unitPrice'].value ||
+            !this.productForm.controls['qty'].value || 
+            !this.productForm.controls['id'].value ||
+            !this.productForm.controls['name'].value ||
+            !this.productForm.controls['totalPrice']) {
             return true;
         }
         return false;
     }
 
     onChanges() {
+        this.productForm.get('qty').valueChanges.subscribe(val => {
+            let unitPrice = this.productForm.controls['unitPrice'].value;
+            this.productForm.controls['totalPrice'].setValue(val * unitPrice);
+        });
+        this.productForm.get('unitPrice').valueChanges.subscribe(val => {
+            let qty = this.productForm.controls['qty'].value;
+            this.productForm.controls['totalPrice'].setValue(val * qty);
+        });
         this.productForm.valueChanges.subscribe(val => {
             console.log('updated ', val);
             console.log('emitting change!!');
@@ -54,9 +62,9 @@ export class ProductComponent implements OnInit{
     }
 
     deleteItem() {
-        this.delete.emit();
+        this.deleteProd.emit();
     }
-    
+
     initializeForm() {
         this.productForm = new FormGroup({
             id: new FormControl('', Validators.required),

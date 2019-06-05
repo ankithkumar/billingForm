@@ -1,9 +1,9 @@
 <form [formGroup]="productForm">
     <input type="text" formControlName="id" />        
     <input type="text" formControlName="name" />
-    <input type="text" formControlName="qty" />
+    <input type="number" formControlName="qty" />
     <input type="text" formControlName="unitPrice"/>
-    <input type="text" formControlName="totalPrice" />
+    <input type="text" formControlName="totalPrice" readonly/>
     <input type="text" formControlName="notes" />
-    <button (click) = "deleteItem">Delete</button>
+    <button type="button" (click)="deleteItem()">Delete</button>
 </form>

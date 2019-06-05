@@ -48,9 +48,9 @@ export class Orderdetails {
         return {
             id: '',
             name: '',
-            qty: '',
-            unitPrice: '',
-            totalPrice: '',
+            qty: 0,
+            unitPrice: 0,
+            totalPrice: 0,
             notes: '',
             isEmpty: true
         }
@@ -71,18 +71,17 @@ export class Orderdetails {
     }
 
     updateBillingDetails(obj) {
-        this.details.billing = obj.details;
-        if (obj.isEmpty != undefined) {
-            this.details.billing.isEmpty = obj.isEmpty;
+        if (!obj) {
+            return;
         }
+        this.details.billing = obj.details;
+        this.details.billing.isEmpty = obj.isEmpty;
         console.log('changed ', this.details);
     }
 
     updateShippingDetails(obj) {
         this.details.shipping = obj.details;
-        if (obj.isEmpty != undefined) {
-            this.details.shipping.isEmpty = obj.isEmpty;
-        }
+        this.details.shipping.isEmpty = obj.isEmpty;
         console.log('changed ', this.details);
     }
 
@@ -90,7 +89,10 @@ export class Orderdetails {
         console.log('delete product in service ', item);
         let id = null;
         this.details.products = _.filter(this.details.products, product => {
-            return product.id != item.id;
+            return (product.id != item.id &&
+                    product.name != item.name &&
+                    product.qty != item.qty ||
+                    product.unitPrice != item.unitPrice);
         });
         this.raiseUpdatedEvent();
     }
@@ -98,7 +100,10 @@ export class Orderdetails {
     updateProduct(newProduct, oldProduct, isEmpty) {
         let id = null;
         _.forEach(this.details.products, (product, index) => {
-            if (product.id == oldProduct.id) {
+            if (product.id == oldProduct.id ||
+                product.name == oldProduct.name ||
+                product.qty === oldProduct.qty ||
+                product.unitPrice === oldProduct.unitPrice) {
                 id = index;
             }
         })
@@ -106,6 +111,9 @@ export class Orderdetails {
             console.log('updateProduct ', id);
             this.details.products[id] = newProduct;
             this.details.products[id].isEmpty = isEmpty;
+        } else {
+            this.details.products.push(newProduct);
+            this.raiseUpdatedEvent();
         }
     }
 

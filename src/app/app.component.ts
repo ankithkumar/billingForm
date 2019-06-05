@@ -65,16 +65,24 @@ export class AppComponent implements OnDestroy{
 
   updateBillingDate(event) {
     console.log('billing date!!', event);
-    if (!event.type || !event) {
+    let isEmpty = false;
+    if (!event.type) {
       this.details.billing.orderDate = event;
-      this.orderDetails.updateBillingDetails(this.details.billing);
+      if (event == '') {
+        isEmpty = true;
+      }
+      this.orderDetails.updateBillingDetails({'details' : this.details.billing, isEmpty});
     }
   }
 
   updateShippingDate(event) {
-    if (!event.type || !event) {
+    let isEmpty = false;
+    if (!event.type || event) {
       this.details.shipping.expectedDate = event;
-      this.orderDetails.updateShippingDetails(this.details.shipping)
+      if (event == '') {
+        isEmpty = true;
+      }
+      this.orderDetails.updateShippingDetails({'details' : this.details.shipping, isEmpty})
     }
   }
 
@@ -91,6 +99,16 @@ export class AppComponent implements OnDestroy{
   save() {
     this.orderDetails.showData();
   }
+
+  parseDate(dateString: string): Date {
+    console.log('parseDateMethod!!', dateString);
+    if (dateString) {
+       console.log(new Date(dateString));
+      return new Date(dateString);
+    }
+    return null;
+  }
+
   ngOnDestroy() {
     this.detailsSubscriber.unsubscribe();
     console.log('in ngOnDestroy of list');
